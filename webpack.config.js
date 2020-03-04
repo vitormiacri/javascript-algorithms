@@ -8,11 +8,18 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   module: {
-    rules: [{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }],
+    rules: [
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
   },
   resolve: {
     modules: [path.resolve('./node_modules'), path.resolve('./src/js')],
-    extensions: ['.json', '.js'],
+    extensions: ['.json', '.js', '.ts'],
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
