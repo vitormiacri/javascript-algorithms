@@ -6,3 +6,5 @@ import './data-structures/baseConverter';
 
 import './data-structures/queue';
 import './data-structures/deque';
+
+import './data-structures/hot-potato';
