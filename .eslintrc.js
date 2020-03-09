@@ -8,6 +8,14 @@ module.exports = {
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
+    expect: true,
+    it: true,
+    describe: true,
+    beforeEach: true,
+    afterEach: true,
+    document: false,
+    navigator: false,
+    window: false,
   },
   parserOptions: {
     ecmaVersion: 2018,
@@ -17,8 +25,13 @@ module.exports = {
     'prettier/prettier': 'error',
     'class-methods-use-this': 'off',
     'no-param-reassign': 'off',
+    'no-return-assign': 'off',
+    'no-restricted-globals': 'off',
+    'no-multi-assign': 'off',
     camelcase: 'off',
     'no-plusplus': 'off',
+    'no-console': 'off',
+    'import/prefer-default-export': 'off',
     'no-unused-vars': ['error', { argsIgnorePattern: 'next' }],
   },
 };
