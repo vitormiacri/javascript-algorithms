@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 export class Node {
   constructor(element) {
     this.element = element;
@@ -5,4 +6,9 @@ export class Node {
   }
 }
 
-export function teste() {}
+export class DoublyNode extends Node {
+  constructor(element, prev, next) {
+    super(element, next);
+    this.prev = prev;
+  }
+}
