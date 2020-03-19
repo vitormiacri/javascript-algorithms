@@ -12,9 +12,8 @@ export default class DoublyLinkedList extends LinkedList {
     const node = new DoublyNode(element);
     if (this.head == null) {
       this.head = node;
-      this.tail = node; // NEW
+      this.tail = node;
     } else {
-      // attach to the tail node // NEW
       this.tail.next = node;
       node.prev = this.tail;
       this.tail = node;
