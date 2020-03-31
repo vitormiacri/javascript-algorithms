@@ -13,3 +13,5 @@ import './data-structures/hot-potato';
 import './data-structures/palindrome';
 
 import './data-structures/linked-list';
+
+import './data-structures/set';
