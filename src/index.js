@@ -17,3 +17,5 @@ import './data-structures/linked-list';
 import './data-structures/set';
 
 import './data-structures/dictionary';
+
+import './data-structures/hashtable';
