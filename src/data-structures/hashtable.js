@@ -1,4 +1,4 @@
-import { defaultToString } from '../util';
+import { defaultToString, djb2HashCode } from '../util';
 import { ValuePair } from './models/value-pair';
 
 export default class HashTable {
@@ -22,7 +22,7 @@ export default class HashTable {
   }
 
   hashCode(key) {
-    return this.loseLoseHashCode(key);
+    return djb2HashCode(key, this.toStrFn);
   }
 
   put(key, value) {
@@ -78,3 +78,11 @@ console.log(hash.get('Gandalf'));
 console.log(hash.get('Vitor'));
 hash.remove('Gandalf');
 console.log(hash.get('Gandalf'));
+
+hash.put('Ygritte', 'ygritte@email.com');
+hash.put('Jonathan', 'jonathan@email.com');
+hash.put('Jamie', 'jamie@email.com');
+
+console.log(`${hash.hashCode('Ygritte')} - Ygritte`);
+console.log(`${hash.hashCode('Jonathan')} - Jonathan`);
+console.log(`${hash.hashCode('Jamie')} - Jamie`);
