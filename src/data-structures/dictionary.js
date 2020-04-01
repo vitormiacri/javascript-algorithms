@@ -114,3 +114,11 @@ console.log(dictionary.size());
 console.log(dictionary.keys());
 console.log(dictionary.values());
 console.log(dictionary.get('Tyrion'));
+dictionary.remove('John');
+console.log(dictionary.keys());
+console.log(dictionary.values());
+console.log(dictionary.keyValues());
+
+dictionary.forEach((k, v) => {
+  console.log('forEach: ', `key: ${k}, value${v}`);
+});
