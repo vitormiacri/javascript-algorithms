@@ -15,3 +15,5 @@ import './data-structures/palindrome';
 import './data-structures/linked-list';
 
 import './data-structures/set';
+
+import './data-structures/dictionary';
