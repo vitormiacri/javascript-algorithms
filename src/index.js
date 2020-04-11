@@ -19,3 +19,5 @@ import './data-structures/set';
 import './data-structures/dictionary';
 
 import './data-structures/hashtable';
+
+import './data-structures/binary-search-tree';
