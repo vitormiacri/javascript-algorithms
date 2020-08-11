@@ -1,7 +1,7 @@
 import { Compare, defaultCompare } from '../util';
 import { Node } from './models/node';
 
-export default class BinatySearchTree {
+export default class BinarySearchTree {
   constructor(compareFn = defaultCompare) {
     this.compareFn = compareFn;
     this.root = null;
@@ -28,9 +28,120 @@ export default class BinatySearchTree {
       this.insertNode(node.right, key);
     }
   }
+
+  inOrderTraverse(callback) {
+    this.inOrderTraverseNode(this.root, callback);
+  }
+
+  inOrderTraverseNode(node, callback) {
+    if (node != null) {
+      this.inOrderTraverseNode(node.left, callback);
+      callback(node.key);
+      this.inOrderTraverseNode(node.right, callback);
+    }
+  }
+
+  preOrderTraverse(callback) {
+    this.preOrderTraverseNode(this.root, callback);
+  }
+
+  preOrderTraverseNode(node, callback) {
+    if (node != null) {
+      callback(node.key);
+      this.preOrderTraverseNode(node.left, callback);
+      this.preOrderTraverseNode(node.right, callback);
+    }
+  }
+
+  postOrderTraverse(callback) {
+    this.postOrderTraverseNode(this.root, callback);
+  }
+
+  postOrderTraverseNode(node, callback) {
+    if (node != null) {
+      this.postOrderTraverseNode(node.left, callback);
+      this.postOrderTraverseNode(node.right, callback);
+      callback(node.key);
+    }
+  }
+
+  min() {
+    return this.minNode(this.root);
+  }
+
+  minNode(node) {
+    let current = node;
+    while (node != null && current.left != null) {
+      current = current.left;
+    }
+    return current;
+  }
+
+  max() {
+    return this.maxNode(this.root);
+  }
+
+  maxNode(node) {
+    let current = node;
+    while (node != null && current.right != null) {
+      current = current.right;
+    }
+    return current;
+  }
+
+  search(key) {
+    return this.searchNode(this.root, key);
+  }
+
+  searchNode(node, key) {
+    if (node == null) {
+      return false;
+    }
+
+    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+      return this.searchNode(node.left, key);
+    }
+    if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+      return this.searchNode(node.right, key);
+    }
+    return true;
+  }
+
+  remove(key) {
+    this.root = this.removeNode(this.root, key);
+  }
+
+  removeNode(node, key) {
+    if (node == null) {
+      return null;
+    }
+    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+      node.left = this.removeNode(node.left, key);
+      return node;
+    } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+      node.right = this.removeNode(node.right, key);
+      return node;
+    } else {
+      if (node.left == null && node.right == null) {
+        node = null;
+        return node;
+      }
+      if (node.left == null) {
+        node = node.right;
+        return node;
+      } else if (node.riht == null) {
+        node = node.left;
+        return node;
+      }
+      const aux = this.minNode(node.right);
+      node.key = aux.key;
+      node.right = this.removeNode(node.right, aux.key);
+      return node;
+    }
+  }
 }
 
-const tree = new BinatySearchTree();
+const tree = new BinarySearchTree();
 tree.insert(11);
 tree.insert(7);
 tree.insert(15);
@@ -48,3 +159,21 @@ tree.insert(25);
 tree.insert(6);
 
 console.log(tree);
+
+const printNode = value => console.log(value);
+console.log('inOrder');
+tree.inOrderTraverse(printNode);
+console.log('preOrder');
+tree.preOrderTraverse(printNode);
+console.log('postOrder');
+tree.postOrderTraverse(printNode);
+
+console.log('Min Node');
+console.log(tree.min());
+
+console.log('Max Node');
+console.log(tree.max());
+
+console.log(tree.search(1) ? 'Chave 1 encontrada' : 'Chave 1 não encontrada');
+
+console.log(tree.search(8) ? 'Chave 8 encontrada' : 'Chave 8 não encontrada');
