@@ -21,3 +21,4 @@ import './data-structures/dictionary';
 import './data-structures/hashtable';
 
 import './data-structures/binary-search-tree';
+import './data-structures/avl-tree';
