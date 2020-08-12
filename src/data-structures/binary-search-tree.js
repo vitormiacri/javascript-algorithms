@@ -177,3 +177,9 @@ console.log(tree.max());
 console.log(tree.search(1) ? 'Chave 1 encontrada' : 'Chave 1 não encontrada');
 
 console.log(tree.search(8) ? 'Chave 8 encontrada' : 'Chave 8 não encontrada');
+
+tree.remove(6);
+tree.remove(5);
+tree.remove(18);
+console.log('Nós removidos: 6, 5, 18');
+console.log(tree);
