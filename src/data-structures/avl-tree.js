@@ -1,4 +1,5 @@
 import { defaultCompare, Compare } from '../util';
+import { Node } from './models/node';
 import BinarySearchTree from './binary-search-tree';
 
 const BalanceFactor = {
@@ -101,13 +102,47 @@ export default class AVLTree extends BinarySearchTree {
 
     return node;
   }
+
+  removeNode(node, key) {
+    node = super.removeNode(node, key);
+    if (node == null) {
+      return node;
+    }
+
+    const balanceFactor = this.getBalanceFactor(node);
+    if (balanceFactor === BalanceFactor.UNBALANCED_LEFT) {
+      const balanceFactorLeft = this.getBalanceFactor(node.left);
+      if (
+        balanceFactorLeft === BalanceFactor.BALANCED ||
+        balanceFactorLeft === BalanceFactor.SLIGHTLY_UNBALANCED_LEFT
+      ) {
+        return this.rotationLL(node);
+      }
+      if (balanceFactorLeft === BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT) {
+        return this.rotationLR(node.left);
+      }
+    }
+    if (balanceFactor === BalanceFactor.UNBALANCED_RIGHT) {
+      const balanceFactorRight = this.getBalanceFactor(node.right);
+      if (
+        balanceFactorRight === BalanceFactor.BALANCED ||
+        balanceFactorRight === BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT
+      ) {
+        return this.rotationRR(node);
+      }
+      if (balanceFactorRight === BalanceFactor.SLIGHTLY_UNBALANCED_LEFT) {
+        return this.rotationRL(node);
+      }
+    }
+    return node;
+  }
 }
 
 const avlTree = new AVLTree();
-avlTree.insert(3);
-avlTree.insert(2);
-avlTree.insert(6);
+avlTree.insert(50);
+avlTree.insert(30);
+avlTree.insert(70);
+avlTree.insert(10);
+avlTree.insert(40);
 avlTree.insert(5);
-avlTree.insert(7);
-avlTree.insert(4);
 console.log(avlTree);
