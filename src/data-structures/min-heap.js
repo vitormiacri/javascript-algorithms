@@ -34,18 +34,13 @@ export default class MinHeap {
     let parent = this.getParentIndex(index);
     while (
       index > 0 &&
-      this.compareFn(this.heap[parent], this.heap[index]) > Compare.BIGGER_THAN
+      this.compareFn(this.heap[parent], this.heap[index]) ===
+        Compare.BIGGER_THAN
     ) {
       swap(this.heap, parent, index);
       index = parent;
       parent = this.getParentIndex(index);
     }
-  }
-
-  swap(array, a, b) {
-    const temp = array[a];
-    array[a] = array[b];
-    array[b] = temp;
   }
 
   size() {
@@ -80,13 +75,15 @@ export default class MinHeap {
     const size = this.size();
     if (
       left < size &&
-      this.compareFn(this.heap[element], this.heap[left]) > Compare.BIGGER_THAN
+      this.compareFn(this.heap[element], this.heap[left]) ===
+        Compare.BIGGER_THAN
     ) {
       element = left;
     }
     if (
       right < size &&
-      this.compareFn(this.heap[element], this.heap[right]) > Compare.BIGGER_THAN
+      this.compareFn(this.heap[element], this.heap[right]) ===
+        Compare.BIGGER_THAN
     ) {
       element = right;
     }
@@ -103,6 +100,7 @@ heap.insert(3);
 heap.insert(4);
 heap.insert(5);
 heap.insert(1);
+console.log(heap);
 
 console.log('Heap size ', heap.size());
 console.log('Heap is empty ', heap.isEmpty());
