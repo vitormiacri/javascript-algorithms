@@ -27,3 +27,5 @@ import './data-structures/avl-tree';
 import './data-structures/min-heap';
 
 import './data-structures/max-heap';
+
+import './algorithms/sorting/heap-sort';
