@@ -1,5 +1,9 @@
 import Dictionary from './dictionary';
-import { breadthFirstSearch } from '../algorithms/graph/breadth-first-search';
+import Stack from './stack';
+import {
+  breadthFirstSearch,
+  BFS,
+} from '../algorithms/graph/breadth-first-search';
 
 export default class Graph {
   constructor(isDirected = false) {
@@ -71,3 +75,21 @@ console.log(graph.toString());
 
 const printVertex = value => console.log(`Visited vertex: ${value}`);
 breadthFirstSearch(graph, myVertices[0], printVertex);
+
+const shortestPathA = BFS(graph, myVertices[0]);
+console.log(shortestPathA);
+
+const fromVertex = myVertices[0];
+for (let i = 1; i < myVertices.length; i++) {
+  const toVertex = myVertices[i];
+  const path = new Stack();
+  for (let v = toVertex; v !== fromVertex; v = shortestPathA.predecessors[v]) {
+    path.push(v);
+  }
+  path.push(fromVertex);
+  let s = path.pop();
+  while (!path.isEmpty()) {
+    s += ` - ${path.pop()}`;
+  }
+  console.log(s);
+}
