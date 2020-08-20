@@ -4,7 +4,7 @@ import {
   breadthFirstSearch,
   BFS,
 } from '../algorithms/graph/breadth-first-search';
-import { dephFirstSearch } from '../algorithms/graph/deph-first-search';
+import { dephFirstSearch, DFS } from '../algorithms/graph/deph-first-search';
 
 export default class Graph {
   constructor(isDirected = false) {
@@ -96,3 +96,4 @@ for (let i = 1; i < myVertices.length; i++) {
 }
 
 dephFirstSearch(graph, printVertex);
+console.log(DFS(graph));
