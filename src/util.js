@@ -63,3 +63,11 @@ export function djb2HashCode(key, toStrFn) {
   }
   return hash % 1013;
 }
+
+export function createNonSortedArray(size) {
+  const array = [];
+  for (let i = size; i > 0; i--) {
+    array.push(i);
+  }
+  return array;
+}
